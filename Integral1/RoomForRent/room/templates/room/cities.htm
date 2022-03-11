@@ -1,0 +1,18 @@
+{% extends 'room/main.htm'%}
+
+{% block content %}
+  
+    <center>
+        {% for city in cities %}
+         
+        <div class="card" style="width: 18rem;">
+            
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" >{{city}}</li> <br>
+            </ul>
+          </div>
+         {% endfor %}
+    </center>
+
+
+{% endblock %}

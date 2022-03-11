@@ -1,0 +1,33 @@
+{% extends 'room/main.htm'%}
+
+{% block content %}
+
+      <br><br>
+     <h2 class = "margin" style="color: rgb(44, 55, 116)">Login</h2>
+     <br><br>
+    
+     {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}  
+        </ul>
+       {% endif %}
+
+     <form action=""  method="POST" class = "margin">
+         {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label" >Username</label>
+              <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Enter your username...">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" placeholder="Enter your password...">
+            </div>
+         <input type="submit" value="Login" class="btn btn-primary"/>
+     </form>
+
+
+
+
+{% endblock %}

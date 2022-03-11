@@ -1,0 +1,24 @@
+{% extends 'room/main.htm'%}
+
+{% block content %}
+
+<center>
+  
+    <form action=""  method="POST">
+        {% csrf_token %}
+        <br><br>
+     <h3>Are you want to cancel ordered room?</h3>
+
+    
+     <a href="{% url 'cancel' %}"><input type="submit" value="Cancel" id="cancel" class="btn btn-danger"/></a>
+    </form>
+    
+    <br>
+    <a href="{{request.META.HTTP_REFERER}}"><input type="submit" value="Go Back" class="btn btn-secondary"/></a> 
+  
+</center>
+
+<script src="static/room/app.js"></script>
+    
+
+{% endblock %}

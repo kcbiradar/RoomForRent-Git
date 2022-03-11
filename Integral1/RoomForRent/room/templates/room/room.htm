@@ -1,0 +1,57 @@
+{% extends 'room/main.htm'%}
+
+{% block content %}
+    <br><br>
+   <h3>HERE YOU CAN SEE DETAILED VIEW OF ROOM</h3>
+
+   <br> <br>
+
+   <img src="{{ rooms.images }}" alt="Images" height="400px" width="50%">
+   
+   <br> <br>
+   <div class="card">
+    <div class="card-header">
+        {{rooms.city}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{rooms}}</h5>
+      <p class="card-text">Room Type : {{rooms.room_type}}</p>
+      <p class="card-text">Room Price : {{rooms.price}} INR</p>
+      <p class="card-text">Address : {{rooms.address}}</p>
+      <p class="card-text">Contact : {{rooms.contact_details}}</p>
+      <p class="card-text">Owner : {{rooms.owner}}</p>
+
+      <form action=""  method="POST">
+        {% csrf_token %}
+        {{form}}
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+        {% if request.user.is_authenticated %}
+        
+        
+        <input type="submit" value="Order" id="order" class="btn btn-success" style="float: right;"> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+        
+        {% endif %}
+        
+      </form>
+      
+    </div>
+  </div>
+
+  <script>
+
+  
+
+  document.querySelector('#order').onclick =  () => {
+    localStorage.setItem((document.querySelector('#order').disabled),true)
+
+     alert('Your room ordered successfully.');
+}
+
+
+  </script>
+
+
+{% endblock %}

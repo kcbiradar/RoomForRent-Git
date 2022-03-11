@@ -1,0 +1,33 @@
+{% extends 'room/main.htm'%}
+
+{% block content %}
+     
+
+     {% if form.errors %}
+     <br>
+     <p>Error occured during the registration process...</p>
+ 
+     {% endif %}
+
+    <div class="shadow p-4 mb-5 bg-body rounded">
+        <br>
+
+        <h2 class="margin" style="color: rgb(44, 55, 116)">Register</h2>
+    <br>
+
+    <form class="margin" action=""  method="POST">
+        {% csrf_token %}
+
+
+         {{ form.as_p}}
+
+
+        <input type="submit" value="Submit" class="btn btn-primary">
+
+    </form>
+
+        
+    </div>
+   
+
+{% endblock %}

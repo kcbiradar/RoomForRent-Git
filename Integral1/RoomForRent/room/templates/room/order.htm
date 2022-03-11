@@ -1,0 +1,30 @@
+{% extends 'room/main.htm'%}
+
+{% block content %}
+
+  {% for orders in order%}
+     
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"># Room Id With City name</th>
+        <th scope="col">Buyer Username</th>
+        <th scope="col">Cancel Odered Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ orders.room_id }}</td>
+        <td>{{ orders.buyer_username }}</td>
+        {% if request.user == orders.buyer_username%}
+        <td>   <a href="{% url 'cancel'  %}"><input type="submit" value= "Cancel"></a> </td>
+        {% endif %}
+      </tr>
+    </tbody>
+  </table>
+      
+
+  {% endfor %}
+
+{% endblock %}
