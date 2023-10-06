@@ -4,7 +4,7 @@
 
   {% for orders in order%}
      
-
+  {% if request.user == orders.buyer_username  or request.user == is_superuser %}
   <table class="table">
     <thead>
       <tr>
@@ -17,11 +17,10 @@
       <tr>
         <td>{{ orders.room_id }}</td>
         <td>{{ orders.buyer_username }}</td>
-        {% if request.user == orders.buyer_username%}
         <td>   <a href="{% url 'cancel'  %}"><input type="submit" value= "Cancel"></a> </td>
-        {% endif %}
       </tr>
     </tbody>
+    {% endif %}
   </table>
       
 

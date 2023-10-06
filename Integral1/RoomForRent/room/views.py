@@ -16,6 +16,8 @@ from django.http import HttpResponse
 
 from .models import Room,Cities,RentedRooms
 
+from django.db.models import Q
+
 # Create your views here.
 
 def login_user(request):
@@ -40,14 +42,17 @@ def logout_user(request):
 
 
 def home(request):
-    # room_list = Room.objects.all()
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-    room_list = Room.objects.filter(city__icontains=q)
-
-    # cities = Cities.objects.all()
-
-    return render(request, 'room/home.htm',{'room_list':room_list})
+    #order = RentedRooms.objects.all()
+    room_list = Room.objects.exclude(
+        Q(id__in=RentedRooms.objects.values('room_id'))
+    )
+    order = RentedRooms.objects.all()
+    return render(request, 'room/home.htm',{
+        'room_list':room_list,
+        'order': order
+        })
 
 @login_required(login_url='login')
 def create_room(request):
@@ -107,8 +112,6 @@ def room(request,pk):
         form = RentedForm(request.POST)
         if form.is_valid():
             room = form.save(commit=False)
-            # if room.buyer_username == request.room_id.owner:
-            #     return HttpResponse('You are not allowed buy this room.')
             room.buyer_username = request.user
             room.room_id_id = pk
             

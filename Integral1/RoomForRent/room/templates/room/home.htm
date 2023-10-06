@@ -13,17 +13,11 @@
 
 <br>
 <marquee behavior="scoroll" direction="left" style="color: rebeccapurple;" ><h2>Wel come to Rental Room Management</h2></marquee>
-
     <h3>ALL AVAILABLE ROOMS</h3> <br><h4 style="color:red">*User is allowed to order one room if you order more than one it will cancel by automatically</h4>
     <hr>
-
     <br>
-
-    
         {% for room in room_list%}
-            
-
-        <div class="card">
+          <div class="card">
             <div class="card-header">
                 {{room.city}}
             </div>
