@@ -26,6 +26,7 @@ class Room(models.Model):
 
 
 class RentedRooms(models.Model):
+    
     room_id = models.ForeignKey(Room,on_delete=models.CASCADE)
     buyer_username = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     odered_date = models.DateTimeField(auto_now_add=True)

@@ -4,22 +4,22 @@
 
   {% for orders in order%}
      
-  {% if request.user == orders.buyer_username  or request.user == is_superuser %}
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"># Room Id With City name</th>
-        <th scope="col">Buyer Username</th>
-        <th scope="col">Cancel Odered Room</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{ orders.room_id }}</td>
-        <td>{{ orders.buyer_username }}</td>
-        <td>   <a href="{% url 'cancel'  %}"><input type="submit" value= "Cancel"></a> </td>
-      </tr>
-    </tbody>
+  {% if request.user == orders.buyer_username  or request.user == user.is_staff %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"># Room Id With City name</th>
+          <th scope="col">Buyer Username</th>
+          <th scope="col">Cancel Odered Room</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ orders.room_id }}</td>
+          <td>{{ orders.buyer_username }}</td>
+          <td>   <a href="{% url 'cancel'  %}"><input type="submit" value= "Cancel"></a> </td>
+        </tr>
+      </tbody>
     {% endif %}
   </table>
       

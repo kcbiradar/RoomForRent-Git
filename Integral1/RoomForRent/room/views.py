@@ -45,9 +45,7 @@ def home(request):
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     #order = RentedRooms.objects.all()
-    room_list = Room.objects.exclude(
-        Q(id__in=RentedRooms.objects.values('room_id'))
-    )
+    room_list = Room.objects.filter(city__icontains=q).exclude(Q(id__in=RentedRooms.objects.values('room_id')))
     order = RentedRooms.objects.all()
     return render(request, 'room/home.htm',{
         'room_list':room_list,
@@ -105,7 +103,7 @@ def updateRoom(request, pk):
     return render(request,'room/create_room.htm',context) 
 
 
-def room(request,pk):
+def booking(request,pk):
     rooms = Room.objects.get(id=pk)
     form = RentedForm(request.POST,instance=rooms)
     if request.method == 'POST':
@@ -154,3 +152,10 @@ def deleteRentedRooms(request):
 def orderedRoom(request):
     order = RentedRooms.objects.all()
     return render(request,'room/order.htm',{'order':order})
+
+
+
+def myRoomsBooked(request):
+    my_rooms = RentedRooms.objects.filter(room_id__owner = request.user.id)
+    print(my_rooms)
+    return render(request , 'room/booked_rooms.htm' , {'my_rooms' : my_rooms})
